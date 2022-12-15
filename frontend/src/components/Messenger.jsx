@@ -148,7 +148,6 @@ const Messenger = () => {
           }
      }, [socketMessage]);
 
-
      const inputHendle = (e) => {
           setNewMessage(e.target.value);
           if (e.key === "Enter" && !e.shiftKey) {
@@ -334,9 +333,9 @@ const Messenger = () => {
                                    </div>
 
                                    <div className="icons">
-                                        <div onClick={() => setHide(!hide)} className="icon">
+                                        {/* <div onClick={() => setHide(!hide)} className="icon">
                                              <FaEllipsisH />
-                                        </div>
+                                        </div> */}
 
                                         <div className={hide ? "theme_logout" : "theme_logout show"}>
                                              <h3>Dark Mode </h3>
