@@ -2,25 +2,28 @@ import moment from "moment";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { Button } from "reactstrap";
 
 
-const Message = ({ message, currentfriend, scrollRef, typingMessage, decrypt }) => {
+const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
   const { myInfo } = useSelector((state) => state.auth);
+
+
+
   return (
     <>
+
       <div className="message-show">
         {message && message.length > 0 ? (
           message.map((m, index) =>
-
             m.senderId === myInfo.id ?
+
               (
                 <div key={index} ref={scrollRef} className="my-message">
                   <div className="image-message">
                     <div className="my-text">
                       <p className="message-text" >
 
-                        {m.message.messageEncrypt && m.message.text === "" ? (
+                        {m.message.messageEncrypt === "" ? (
                           <img src={`./image/${m.message.image}`} />
                         ) : (
 

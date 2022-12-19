@@ -2,7 +2,7 @@ import moment from "moment";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaRegCheckCircle } from "react-icons/fa";
-import Decrypt from "./Decrypt";
+
 
 const ListMessages = ({ message, currentfriend, scrollRef, typingMessage }) => {
     const { myInfo } = useSelector((state) => state.auth)
