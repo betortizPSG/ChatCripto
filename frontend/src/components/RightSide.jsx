@@ -1,9 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
 
+import ListMessages from "./ListMessages";
+
+
+
+
 const RightSide = (props) => {
+
+  const [show, setShow] = useState(false)
+
+  const Decrypt = () => {
+    setShow(!show)
+  }
   const {
     currentfriend,
     inputHendle,
@@ -14,6 +25,8 @@ const RightSide = (props) => {
     ImageSend,
     activeUser,
     typingMessage,
+
+
   } = props;
 
   return (
@@ -29,8 +42,8 @@ const RightSide = (props) => {
                     <img src={`./image/${currentfriend.image}`} alt="" />
 
                     {activeUser &&
-                      activeUser.length > 0 &&
-                      activeUser.some((u) => u.userId === currentfriend._id) ? (
+                    activeUser.length > 0 &&
+                    activeUser.some((u) => u.userId === currentfriend._id) ? (
                       <div className="active-icon"></div>
                     ) : (
                       ""
@@ -40,14 +53,32 @@ const RightSide = (props) => {
                     <h3>{currentfriend.userName} </h3>
                   </div>
                 </div>
+                <button onClick={Decrypt}>
+                  Decriptar
+                </button>
               </div>
-
-              <Message
+              {show ? <Message
                 message={message}
                 currentfriend={currentfriend}
                 scrollRef={scrollRef}
                 typingMessage={typingMessage}
               />
+                :
+
+                <ListMessages
+                  message={message}
+                  currentfriend={currentfriend}
+                  scrollRef={scrollRef}
+                  typingMessage={typingMessage}
+                />
+
+              }
+              {/* <Message
+                message={message}
+                currentfriend={currentfriend}
+                scrollRef={scrollRef}
+                typingMessage={typingMessage}
+              /> */}
 
               <MessageSend
                 inputHendle={inputHendle}
@@ -58,12 +89,15 @@ const RightSide = (props) => {
             </div>
           </div>
           <div className='col-4'>
-            <Logout />
-          </div>
-        </div>
-      </div>
-    </div>
+            <Logout
+            />
 
+          </div>
+        </div>        
+      </div>
+
+    </div>
+    
   );
 };
 

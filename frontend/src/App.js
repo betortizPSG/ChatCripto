@@ -11,12 +11,12 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-    <Routes>
-      <Route path="/messenger/login" element={<Login />} />
-      <Route path="/" element={ <ProtectRoute> <Messenger /> </ProtectRoute> } />      
-    </Routes>
-  </BrowserRouter>
-      
+        <Routes>
+          <Route path="/messenger/login" element={<Login />} />
+          <Route path="/" element={<ProtectRoute> <Messenger /> </ProtectRoute>} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
