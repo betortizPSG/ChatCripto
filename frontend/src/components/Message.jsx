@@ -1,7 +1,9 @@
 import moment from "moment";
-import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaRegCheckCircle } from "react-icons/fa";
+
+
 
 const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
   const { myInfo } = useSelector((state) => state.auth);

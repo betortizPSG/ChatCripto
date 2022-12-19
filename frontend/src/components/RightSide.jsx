@@ -2,6 +2,7 @@ import React from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
+import Decrypt from "./Decrypt";
 
 const RightSide = (props) => {
   const {
@@ -62,6 +63,7 @@ const RightSide = (props) => {
           </div>
         </div>        
       </div>
+
     </div>
     
   );
