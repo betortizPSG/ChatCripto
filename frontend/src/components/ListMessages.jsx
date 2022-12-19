@@ -1,6 +1,11 @@
+import moment from "moment";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 
-const ListMessages = () => {
+const ListMessages = ({ message, currentfriend, scrollRef, typingMessage }) => {
+    const { myInfo } = useSelector((state) => state.auth)
     return (
         <>
 
@@ -9,11 +14,12 @@ const ListMessages = () => {
                 {message && message.length > 0 ? (
                     message.map((m, index) =>
                         m.senderId === myInfo.id ? (
-                            <div key={index} ref={scrollRef} className="my-message">
+                            <div key={index} ref={scrollRef} className="my-message" >
                                 <div className="image-message">
                                     <div className="my-text">
-                                        <p className="message-text">
+                                        <p className="message-text" >
                                             {m.message.text === "" ? (
+
                                                 <img src={`./image/${m.message.image}`} />
                                             ) : (
 
@@ -47,6 +53,7 @@ const ListMessages = () => {
                                     {moment(m.createdAt).startOf("mini").fromNow()}
                                 </div>
                             </div>
+
                         ) : (
                             <div ref={scrollRef} className="fd-message">
                                 <div className="image-message-time">
@@ -80,24 +87,26 @@ const ListMessages = () => {
                     </div>
                 )}
             </div>
-            {typingMessage &&
-                typingMessage.msg &&
-                typingMessage.senderId === currentfriend._id ? (
-                <div className="typing-message">
-                    <div className="fd-message">
-                        <div className="image-message-time">
-                            <img src={`./image/${currentfriend.image}`} alt="" />
-                            <div className="message-time">
-                                <div className="fd-text">
-                                    <p className="time">Digitando mensagem.... </p>
+            {
+                typingMessage &&
+                    typingMessage.msg &&
+                    typingMessage.senderId === currentfriend._id ? (
+                    <div className="typing-message">
+                        <div className="fd-message">
+                            <div className="image-message-time">
+                                <img src={`./image/${currentfriend.image}`} alt="" />
+                                <div className="message-time">
+                                    <div className="fd-text">
+                                        <p className="time">Digitando mensagem.... </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ) : (
-                ""
-            )}
+                ) : (
+                    ""
+                )
+            }
         </>
     )
 }
