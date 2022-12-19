@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Decrypt = () => {
     const [show, setShow] = useState(false)
     const handleDecrypt = () => {
         setShow(!show)
-
     }
+
+    useEffect(() => {
+        setShow(show)
+    })
 
     return (
         <div>
             <button
                 onClick={handleDecrypt}
-            >Decriptar</button>
+
+            >Decriptar </button>
+            {show ? "true" : "false"}
         </div>
 
     )

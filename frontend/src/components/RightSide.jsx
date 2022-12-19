@@ -4,6 +4,8 @@ import Message from "./Message";
 import MessageSend from "./MessageSend";
 import Decrypt from "./Decrypt";
 
+
+
 const RightSide = (props) => {
   const {
     currentfriend,
@@ -15,6 +17,7 @@ const RightSide = (props) => {
     ImageSend,
     activeUser,
     typingMessage,
+    decrypt
   } = props;
 
   return (
@@ -59,7 +62,15 @@ const RightSide = (props) => {
             </div>
           </div>
           <div className='col-4'>
-            <Logout />
+            <Logout
+            />
+            <Decrypt
+              message={message}
+              currentfriend={currentfriend}
+              scrollRef={scrollRef}
+              typingMessage={typingMessage}
+              decrypt={decrypt}
+            />
           </div>
         </div>
       </div>
