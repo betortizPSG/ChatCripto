@@ -2,19 +2,14 @@ import { useState } from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
-
 import ListMessages from "./ListMessages";
 
-
-
-
 const RightSide = (props) => {
-
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   const Decrypt = () => {
-    setShow(!show)
-  }
+    setShow(!show);
+  };
   const {
     currentfriend,
     inputHendle,
@@ -25,8 +20,6 @@ const RightSide = (props) => {
     ImageSend,
     activeUser,
     typingMessage,
-
-
   } = props;
 
   return (
@@ -53,26 +46,22 @@ const RightSide = (props) => {
                     <h3>{currentfriend.userName} </h3>
                   </div>
                 </div>
-                <button onClick={Decrypt}>
-                  Decriptar
-                </button>
               </div>
-              {show ? <Message
-                message={message}
-                currentfriend={currentfriend}
-                scrollRef={scrollRef}
-                typingMessage={typingMessage}
-              />
-                :
-
+              {show ? (
+                <Message
+                  message={message}
+                  currentfriend={currentfriend}
+                  scrollRef={scrollRef}
+                  typingMessage={typingMessage}
+                />
+              ) : (
                 <ListMessages
                   message={message}
                   currentfriend={currentfriend}
                   scrollRef={scrollRef}
                   typingMessage={typingMessage}
                 />
-
-              }
+              )}
               {/* <Message
                 message={message}
                 currentfriend={currentfriend}
@@ -88,16 +77,19 @@ const RightSide = (props) => {
               />
             </div>
           </div>
-          <div className='col-4'>
-            <Logout
-            />
-
+          <div className="col-4">
+            <div>
+              <Logout />
+            </div>
+            <div>
+              <button onClick={Decrypt} className={"btn-decripto"}>
+                Decriptar
+              </button>
+            </div>
           </div>
-        </div>        
+        </div>
       </div>
-
     </div>
-    
   );
 };
 
