@@ -5,13 +5,7 @@ import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
 
 const RightSide = (props) => {
-<<<<<<< HEAD
   const [show, setShow] = useState(false);
-=======
-
-
-  const [show, setShow] = useState(false)
->>>>>>> 1815da159741276f31f1de09bff2e9bdc5936882
 
   const Decrypt = () => {
     setShow(!show);
@@ -100,10 +94,6 @@ const RightSide = (props) => {
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 1815da159741276f31f1de09bff2e9bdc5936882
   );
 };
 
