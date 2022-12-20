@@ -12,7 +12,7 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
   return (
     <>
 
-      <div className="message-show">
+      <div className="message-show" >
         {message && message.length > 0 ? (
           message.map((m, index) =>
             m.senderId === myInfo.id ?
@@ -92,24 +92,26 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
           </div>
         )}
       </div>
-      {typingMessage &&
-        typingMessage.msg &&
-        typingMessage.senderId === currentfriend._id ? (
-        <div className="typing-message">
-          <div className="fd-message">
-            <div className="image-message-time">
-              <img src={`./image/${currentfriend.image}`} alt="" />
-              <div className="message-time">
-                <div className="fd-text">
-                  <p className="time">Digitando mensagem.... </p>
+      {
+        typingMessage &&
+          typingMessage.msg &&
+          typingMessage.senderId === currentfriend._id ? (
+          <div className="typing-message">
+            <div className="fd-message">
+              <div className="image-message-time">
+                <img src={`./image/${currentfriend.image}`} alt="" />
+                <div className="message-time">
+                  <div className="fd-text">
+                    <p className="time">Digitando mensagem.... </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ) : (
-        ""
-      )}
+        ) : (
+          ""
+        )
+      }
     </>
   );
 };
