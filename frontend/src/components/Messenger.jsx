@@ -21,6 +21,7 @@ import { io } from "socket.io-client";
 import useSound from "use-sound";
 import notificationSound from "../audio/notification.mp3";
 import sendingSound from "../audio/sending.mp3";
+import { Button } from "reactstrap";
 
 const Messenger = () => {
   const [notificationSPlay] = useSound(notificationSound);
@@ -259,6 +260,10 @@ const Messenger = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [Button]);
+
   const emojiSend = (emu) => {
     setNewMessage(`${newMessage}` + emu);
     socket.current.emit("typingMessage", {
@@ -297,10 +302,10 @@ const Messenger = () => {
 
   const [hide, setHide] = useState(true);
 
-  const logout = () => {
-    dispatch(userLogout());
-    socket.current.emit("logout", myInfo.id);
-  };
+  /*   const logout = () => {
+      dispatch(userLogout());
+      socket.current.emit("logout", myInfo.id);
+    }; */
 
   useEffect(() => {
     dispatch(getTheme());
@@ -336,21 +341,21 @@ const Messenger = () => {
               <div className="friends">
                 {friends && friends.length > 0
                   ? friends.map((fd) => (
-                      <div
-                        onClick={() => setCurrentFriend(fd.fndInfo)}
-                        className={
-                          currentfriend._id === fd.fndInfo._id
-                            ? "hover-friend active"
-                            : "hover-friend"
-                        }
-                      >
-                        <Friends
-                          activeUser={activeUser}
-                          myId={myInfo.id}
-                          friend={fd}
-                        />
-                      </div>
-                    ))
+                    <div
+                      onClick={() => setCurrentFriend(fd.fndInfo)}
+                      className={
+                        currentfriend._id === fd.fndInfo._id
+                          ? "hover-friend active"
+                          : "hover-friend"
+                      }
+                    >
+                      <Friends
+                        activeUser={activeUser}
+                        myId={myInfo.id}
+                        friend={fd}
+                      />
+                    </div>
+                  ))
                   : "No Friend"}
               </div>
             </div>

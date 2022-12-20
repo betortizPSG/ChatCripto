@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
@@ -9,6 +9,7 @@ import ListMessages from "./ListMessages";
 
 
 const RightSide = (props) => {
+
 
   const [show, setShow] = useState(false)
 
@@ -29,6 +30,10 @@ const RightSide = (props) => {
 
   } = props;
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [Decrypt]);
+
   return (
     <div className="col-9">
       <div className="right-side">
@@ -42,8 +47,8 @@ const RightSide = (props) => {
                     <img src={`./image/${currentfriend.image}`} alt="" />
 
                     {activeUser &&
-                    activeUser.length > 0 &&
-                    activeUser.some((u) => u.userId === currentfriend._id) ? (
+                      activeUser.length > 0 &&
+                      activeUser.some((u) => u.userId === currentfriend._id) ? (
                       <div className="active-icon"></div>
                     ) : (
                       ""
@@ -93,11 +98,11 @@ const RightSide = (props) => {
             />
 
           </div>
-        </div>        
+        </div>
       </div>
 
     </div>
-    
+
   );
 };
 
