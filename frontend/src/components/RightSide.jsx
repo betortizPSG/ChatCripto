@@ -3,21 +3,12 @@ import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 
 const RightSide = (props) => {
      const [show, setShow] = useState(true);
 
-     const Decrypt = () => {
 
-
-          setTimeout(() => {
-               setShow(!show);
-
-               scrollRef.current?.scrollIntoView({ behavior: "auto" });
-
-          }, "200")
-
-     };
      const {
           currentfriend,
           inputHendle,
@@ -92,9 +83,29 @@ const RightSide = (props) => {
                                    <Logout />
                               </div>
 
-                              <button onClick={Decrypt} className={"btn-decripto"}>Decriptar
-                              </button>
+                              <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >
+                                   <div className="">
+                                        <h3 className="title-dark-mode">Criptografar</h3>
+                                   </div >
+                                   <Form>
+                                        <FormGroup switch>
+                                             <Input
+                                                  className="tema-dark-switch"
+                                                  type="switch"
+                                                  checked={show}
+                                                  onClick={() => {
+                                                       setTimeout(() => {
+                                                            setShow(!show);
 
+                                                            scrollRef.current?.scrollIntoView({ behavior: "auto" });
+
+                                                       }, "100")
+                                                  }}
+                                             />
+                                             <Label check>Ligar</Label>
+                                        </FormGroup>
+                                   </Form>
+                              </div>
                          </div>
                     </div>
                </div>
