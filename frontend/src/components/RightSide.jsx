@@ -8,7 +8,15 @@ const RightSide = (props) => {
      const [show, setShow] = useState(true);
 
      const Decrypt = () => {
-          setShow(!show);
+
+
+          setTimeout(() => {
+               setShow(!show);
+
+               scrollRef.current?.scrollIntoView({ behavior: "auto" });
+
+          }, "200")
+
      };
      const {
           currentfriend,
@@ -22,9 +30,7 @@ const RightSide = (props) => {
           typingMessage,
      } = props;
 
-     useEffect(() => {
-          scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-     }, [Decrypt]);
+
 
      return (
           <div className="col-9">
@@ -85,10 +91,10 @@ const RightSide = (props) => {
                               <div>
                                    <Logout />
                               </div>
-                              <div>
-                                   <button onClick={Decrypt} className={"btn-decripto"}>Decriptar
-                                   </button>
-                              </div>
+
+                              <button onClick={Decrypt} className={"btn-decripto"}>Decriptar
+                              </button>
+
                          </div>
                     </div>
                </div>

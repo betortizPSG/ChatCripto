@@ -9,7 +9,7 @@ const ListMessages = ({ message, currentfriend, scrollRef, typingMessage }) => {
     return (
         <>
 
-            <div className="message-show">
+            <div id="show-messages" className="message-show">
 
                 {message && message.length > 0 ? (
                     message.map((m, index) =>
