@@ -12,6 +12,7 @@ const Logout = () => {
   const [hide, setHide] = useState(true);
   const [state, setState] = useState(false);
   const { myInfo } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Logout = () => {
   const logout = () => {
     dispatch(userLogout());
     socket.current.emit("logout", myInfo.id);
-  };
+  };  
 
   return (
     <>
@@ -58,17 +59,7 @@ const Logout = () => {
                 />
                 <Label check>Ligar</Label>
               </FormGroup>
-
-              <div className="darkmode">
-                <div className={hide ? "theme_logout" : "theme_logout_show"}>
-                  <h3 className="title-dark-mode">Decriptar</h3>
-                </div>
-              </div>
-              <FormGroup switch>
-                <Input className="tema-dark-switch" type="switch" />
-                <Label check>Decriptar</Label>
-              </FormGroup>
-            </Form>
+              </Form>
           </div>
         </div>
       </div>

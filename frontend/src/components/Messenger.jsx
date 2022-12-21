@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FaSignOutAlt } from "react-icons/fa";
 import Friends from "./Friends";
 import RightSide from "./RightSide";
 import { useDispatch, useSelector } from "react-redux";
