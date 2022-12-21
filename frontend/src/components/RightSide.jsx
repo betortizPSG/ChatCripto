@@ -11,99 +11,99 @@ import ListMessages from "./ListMessages";
 const RightSide = (props) => {
 
 
-  const [show, setShow] = useState(false)
+     const [show, setShow] = useState(true)
 
-  const Decrypt = () => {
-    setShow(!show)
-  }
-  const {
-    currentfriend,
-    inputHendle,
-    newMessage,
-    sendMessage,
-    message,
-    scrollRef,
-    ImageSend,
-    activeUser,
-    typingMessage,
+     const Decrypt = () => {
+          setShow(!show)
+     }
+     const {
+          currentfriend,
+          inputHendle,
+          newMessage,
+          sendMessage,
+          message,
+          scrollRef,
+          ImageSend,
+          activeUser,
+          typingMessage,
 
 
-  } = props;
+     } = props;
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [Decrypt]);
+     useEffect(() => {
+          scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+     }, [Decrypt]);
 
-  return (
-    <div className="col-9">
-      <div className="right-side">
-        <input type="checkbox" id="dot" />
-        <div className="row">
-          <div className="col-8">
-            <div className="message-send-show">
-              <div className="header">
-                <div className="image-name">
-                  <div className="image">
-                    <img src={`./image/${currentfriend.image}`} alt="" />
+     return (
+          <div className="col-9">
+               <div className="right-side">
+                    <input type="checkbox" id="dot" />
+                    <div className="row">
+                         <div className="col-8">
+                              <div className="message-send-show">
+                                   <div className="header">
+                                        <div className="image-name">
+                                             <div className="image">
+                                                  <img src={`./image/${currentfriend.image}`} alt="" />
 
-                    {activeUser &&
-                      activeUser.length > 0 &&
-                      activeUser.some((u) => u.userId === currentfriend._id) ? (
-                      <div className="active-icon"></div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="name">
-                    <h3>{currentfriend.userName} </h3>
-                  </div>
-                </div>
-                <button onClick={Decrypt}>
-                  Decriptar
-                </button>
-              </div>
-              {show ? <Message
-                message={message}
-                currentfriend={currentfriend}
-                scrollRef={scrollRef}
-                typingMessage={typingMessage}
-              />
-                :
+                                                  {activeUser &&
+                                                       activeUser.length > 0 &&
+                                                       activeUser.some((u) => u.userId === currentfriend._id) ? (
+                                                       <div className="active-icon"></div>
+                                                  ) : (
+                                                       ""
+                                                  )}
+                                             </div>
+                                             <div className="name">
+                                                  <h3>{currentfriend.userName} </h3>
+                                             </div>
+                                        </div>
+                                        <button onClick={Decrypt}>
+                                             Decriptar
+                                        </button>
+                                   </div>
+                                   {show ? <Message
+                                        message={message}
+                                        currentfriend={currentfriend}
+                                        scrollRef={scrollRef}
+                                        typingMessage={typingMessage}
+                                   />
+                                        :
 
-                <ListMessages
-                  message={message}
-                  currentfriend={currentfriend}
-                  scrollRef={scrollRef}
-                  typingMessage={typingMessage}
-                />
+                                        <ListMessages
+                                             message={message}
+                                             currentfriend={currentfriend}
+                                             scrollRef={scrollRef}
+                                             typingMessage={typingMessage}
+                                        />
 
-              }
-              {/* <Message
+                                   }
+                                   {/* <Message
                 message={message}
                 currentfriend={currentfriend}
                 scrollRef={scrollRef}
                 typingMessage={typingMessage}
               /> */}
 
-              <MessageSend
-                inputHendle={inputHendle}
-                newMessage={newMessage}
-                sendMessage={sendMessage}
-                ImageSend={ImageSend}
-              />
-            </div>
-          </div>
-          <div className='col-4'>
-            <Logout
-            />
+                                   <MessageSend
+                                        inputHendle={inputHendle}
+                                        newMessage={newMessage}
+                                        sendMessage={sendMessage}
+                                        ImageSend={ImageSend}
+                                   />
+                              </div>
+                         </div>
+                         <div className='col-4'>
+                              <Logout
+                              />
+
+                         </div>
+                    </div>
+               </div>
 
           </div>
-        </div>
-      </div>
 
-    </div>
-
-  );
+     );
 };
 
 export default RightSide;
