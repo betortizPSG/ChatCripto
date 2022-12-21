@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 const Logout = () => {
   const socket = useRef();
   const [hide, setHide] = useState(true);
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
   const { myInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -19,10 +19,23 @@ const Logout = () => {
     socket.current = io("ws://localhost:8000");
   }, []);
 
+
+  // Effect altera o State para mudar o tema 
+  useEffect(() => {
+    if (state) {
+      dispatch(themeSet("dark"))
+    }
+    if (!state) {
+      dispatch(themeSet("white"))
+
+    }
+
+  }, [state])
+
   const logout = () => {
     dispatch(userLogout());
     socket.current.emit("logout", myInfo.id);
-  };  
+  };
 
   return (
     <>
@@ -49,17 +62,12 @@ const Logout = () => {
                   checked={state}
                   onClick={() => {
                     setState(!state);
-                    if (state === false) {
-                      dispatch(themeSet("dark"));
-                    }
-                    if (state === true) {
-                      dispatch(themeSet("white"));
-                    }
                   }}
                 />
-                <Label check>Ligar</Label>
+                <Label >Ligar</Label>
               </FormGroup>
-              </Form>
+            </Form>
+
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@
     background-color: rgb(247, 241, 241); // Cor de fundo amigo
     height: 100%;
     overflow-y: auto;
+    border-radius: 15px;
 
     &::-webkit-scrollbar {
         display: none;
