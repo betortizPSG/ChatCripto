@@ -160,7 +160,7 @@ module.exports.userLogin = async (req, res) => {
           };
 
           res.status(200).cookie("authToken", token, options).json({
-            successMessage: "Seu login foi bem-sucedido",
+            successMessage: "Entrada bem sucedida",
             token,
           });
         } else {
