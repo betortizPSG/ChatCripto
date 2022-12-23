@@ -16,7 +16,7 @@ const Logout = () => {
   const alert = useAlert()
 
   const onIdle = () => {
-    alert.show('Você está a algum tem sem atividade!');
+    alert.info('Você está a algum tem sem atividade!');
     logout()
   }
 
