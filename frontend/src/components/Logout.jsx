@@ -7,14 +7,19 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { io } from "socket.io-client";
 import { useIdleTimer } from 'react-idle-timer'
+import { useAlert } from 'react-alert'
 
 
 
 const Logout = () => {
   const socket = useRef();
+  const alert = useAlert()
+
   const onIdle = () => {
-    window.alert('PORRA TU È BURRO')
+    alert.show('Você está a algum tem sem atividade!');
+    logout()
   }
+
   const {
     start,
     reset,
