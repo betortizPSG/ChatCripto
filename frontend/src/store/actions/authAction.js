@@ -4,6 +4,7 @@ import {
   REGISTER_SUCCESS,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  LOGOUT_SUCCESS,
 } from "../types/authType";
 
 export const userRegister = (data) => {
@@ -78,8 +79,8 @@ export const userLogout = () => async (dispatch) => {
     if (response.data.success) {
       localStorage.removeItem("authToken");
       dispatch({
-        type: "LOGOUT_SUCCESS",
+        type: LOGOUT_SUCCESS,
       });
     }
-  } catch (error) {}
+  } catch (error) { }
 };

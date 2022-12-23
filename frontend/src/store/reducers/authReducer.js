@@ -6,6 +6,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  IDLE_USER,
 } from "../types/authType";
 import deCodeToken from "jwt-decode";
 
@@ -75,14 +76,25 @@ export const authReducer = (state = authState, action) => {
     };
   }
 
-  if (type === "LOGOUT_SUCCESS") {
+  if (type === LOGOUT_SUCCESS) {
     return {
       ...state,
       authenticate: false,
       myInfo: "",
+      timeout: 300,
       successMessage: "Saida feita com sucesso",
     };
   }
 
+  if (type === "IDLE_USER") {
+    return {
+      ...state,
+      authenticate: false,
+      myInfo: "",
+      successMessage: "Você foi deslogado do sistema por inatividade"
+    }
+
+
+  }
   return state;
 };
