@@ -24,7 +24,7 @@
 
                         flex-direction: row;
                         align-items: center;
-                        justify-content: space-between;
+                        justify-content: space-around;
                         padding: 25px 30px;
                         border-bottom: 5px solid var(--border-color);
 
@@ -140,4 +140,18 @@
 
 .none {
     opacity: 0;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
+    height: 200px;
+    margin: 0px;
+    padding: 0;
+    align-items: flex-start;
+}
+
+.btn-logout {
+    margin: 0px;
+    height: 50px;
 }
