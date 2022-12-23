@@ -78,7 +78,7 @@ const RightSide = (props) => {
                                    />
                               </div>
                          </div>
-                         <div className="col-4">
+                         {/* <div className="col-4">
                               <div>
                                    <Logout />
                               </div>
@@ -106,7 +106,7 @@ const RightSide = (props) => {
                                         </FormGroup>
                                    </Form>
                               </div>
-                         </div>
+                         </div> */}
                     </div>
                </div>
           </div>
