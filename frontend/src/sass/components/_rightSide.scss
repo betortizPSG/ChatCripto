@@ -145,13 +145,17 @@
 .logout {
     display: flex;
     justify-content: flex-end;
-    height: 200px;
     margin: 0px;
-    padding: 0;
+    padding: 0px;
     align-items: flex-start;
 }
 
-.btn-logout {
+.logout .btn-logout {
     margin: 0px;
+}
+
+.btn-logout {
+    margin-top: 0px;
+    padding: 0px;
     height: 50px;
 }

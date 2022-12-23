@@ -34,33 +34,33 @@ const RightSide = (props) => {
                                         <Logout />
                                    </div>
                                    <div className="header">
+                                        <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >
+                                             <div className="">
+                                                  <h3 className="title-dark-mode">Criptografar</h3>
+                                             </div >
+                                             <Form>
+                                                  <FormGroup switch>
+                                                       <Input
+                                                            className="tema-dark-switch"
+                                                            type="switch"
+                                                            checked={show}
+                                                            onClick={() => {
+                                                                 setTimeout(() => {
+                                                                      setShow(!show);
 
+                                                                      scrollRef.current?.scrollIntoView({ behavior: "auto" });
+
+                                                                 }, "100")
+                                                            }}
+                                                       />
+                                                       <Label check>Ligar</Label>
+                                                  </FormGroup>
+                                             </Form>
+                                        </div>
                                         <div className="col-4">
 
 
-                                             <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >
-                                                  <div className="">
-                                                       <h3 className="title-dark-mode">Criptografar</h3>
-                                                  </div >
-                                                  <Form>
-                                                       <FormGroup switch>
-                                                            <Input
-                                                                 className="tema-dark-switch"
-                                                                 type="switch"
-                                                                 checked={show}
-                                                                 onClick={() => {
-                                                                      setTimeout(() => {
-                                                                           setShow(!show);
 
-                                                                           scrollRef.current?.scrollIntoView({ behavior: "auto" });
-
-                                                                      }, "100")
-                                                                 }}
-                                                            />
-                                                            <Label check>Ligar</Label>
-                                                       </FormGroup>
-                                                  </Form>
-                                             </div>
 
                                         </div>
                                         <div className="image-name">
