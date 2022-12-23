@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../store/actions/authAction";
+import { userIdle, userLogout } from "../store/actions/authAction";
 import { themeSet } from "../store/actions/messengerAction";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,8 +16,7 @@ const Logout = () => {
   const alert = useAlert()
 
   const onIdle = () => {
-    alert.show('Você está a algum tem sem atividade!');
-    logout()
+    disconnectIdleUser()
   }
 
   const {
@@ -94,6 +93,10 @@ const Logout = () => {
     dispatch(userLogout());
     socket.current.emit("logout", myInfo.id);
   };
+  const disconnectIdleUser = () => {
+    dispatch(userIdle());
+    socket.current.emit("logout", myInfo.id);
+  }
 
   return (
     <>
