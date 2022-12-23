@@ -6,18 +6,134 @@ import { themeSet } from "../store/actions/messengerAction";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { io } from "socket.io-client";
+import toast, { Toaster } from "react-hot-toast";
+
+import {
+  getFriends,
+  messageSend,
+  getMessage,
+  ImageMessageSend,
+  seenMessage,
+  updateMessage,
+  getTheme,
+} from "../store/actions/messengerAction";
 
 const Logout = () => {
   const socket = useRef();
   const [hide, setHide] = useState(true);
   const [state, setState] = useState(true);
+
+  const [currentfriend, setCurrentFriend] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+
+  const [activeUser, setActiveUser] = useState([]);
+  const [socketMessage, setSocketMessage] = useState("");
+  const [typingMessage, setTypingMessage] = useState("");
   const { myInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     socket.current = io("ws://localhost:8000");
+    socket.current.on("getMessage", (data) => {
+      setSocketMessage(data);
+    });
+
+    socket.current.on("typingMessageGet", (data) => {
+      setTypingMessage(data);
+    });
+
+    socket.current.on("msgSeenResponse", (msg) => {
+      dispatch({
+        type: "SEEN_MESSAGE",
+        payload: {
+          msgInfo: msg,
+        },
+      });
+    });
+
+    socket.current.on("msgDelivaredResponse", (msg) => {
+      dispatch({
+        type: "DELIVARED_MESSAGE",
+        payload: {
+          msgInfo: msg,
+        },
+      });
+    });
+
+    socket.current.on("seenSuccess", (data) => {
+      dispatch({
+        type: "SEEN_ALL",
+        payload: data,
+      });
+    });
   }, []);
+
+  useEffect(() => {
+    if (socketMessage && currentfriend) {
+      if (
+        socketMessage.senderId === currentfriend._id &&
+        socketMessage.reseverId === myInfo.id
+      ) {
+        dispatch({
+          type: "SOCKET_MESSAGE",
+          payload: {
+            message: socketMessage,
+          },
+        });
+        dispatch(seenMessage(socketMessage));
+        socket.current.emit("messageSeen", socketMessage);
+        dispatch({
+          type: "UPDATE_FRIEND_MESSAGE",
+          payload: {
+            msgInfo: socketMessage,
+            status: "seen",
+          },
+        });
+      }
+    }
+    setSocketMessage("");
+  }, [socketMessage]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", myInfo.id, myInfo);
+  }, []);
+
+  useEffect(() => {
+    socket.current.on("getUser", (users) => {
+      const filterUser = users.filter((u) => u.userId !== myInfo.id);
+      setActiveUser(filterUser);
+    });
+
+    socket.current.on("new_user_add", (data) => {
+      dispatch({
+        type: "NEW_USER_ADD",
+        payload: {
+          new_user_add: data,
+        },
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (
+      socketMessage &&
+      socketMessage.senderId !== currentfriend._id &&
+      socketMessage.reseverId === myInfo.id
+    ) {
+      toast.success(`${socketMessage.senderName} Send a New Message`);
+      dispatch(updateMessage(socketMessage));
+      socket.current.emit("delivaredMessage", socketMessage);
+      dispatch({
+        type: "UPDATE_FRIEND_MESSAGE",
+        payload: {
+          msgInfo: socketMessage,
+          status: "delivared",
+        },
+      });
+    }
+  }, [socketMessage]);
+
 
 
   // Effect altera o State para mudar o tema 
@@ -36,6 +152,8 @@ const Logout = () => {
     dispatch(userLogout());
     socket.current.emit("logout", myInfo.id);
   };
+
+
 
   return (
     <>
