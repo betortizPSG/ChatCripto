@@ -6,6 +6,7 @@ import {
   USER_LOGIN_FAIL,
   LOGOUT_SUCCESS,
   IDLE_USER,
+  PROMPT_IDLE,
 } from "../types/authType";
 
 export const userRegister = (data) => {
@@ -98,3 +99,15 @@ export const userIdle = () => async (dispatch) => {
     }
   } catch (error) { }
 };
+
+export const promptIdle = () => async (dispatch) => {
+  try {
+    const response = await axios.post("/api/messenger/user-login")
+    if (response.data.success) {
+      dispatch({
+        type: PROMPT_IDLE,
+      });
+    }
+  } catch (error) { }
+
+}
