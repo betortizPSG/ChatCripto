@@ -158,36 +158,38 @@ const Logout = () => {
   return (
     <>
       <div className="body">
+        <div className="father-dark">
+          <div className="darkmode">
+            <div className={hide ? "theme_logout" : "theme_logout_show"}>
+              <h3 className="title-dark-mode">Tema escuro</h3>
+            </div>
+          </div>
+
+          <div className="tema">
+            <div>
+              <Form>
+                <FormGroup switch>
+                  <Input
+                    className="tema-dark-switch"
+                    type="switch"
+                    checked={state}
+                    onClick={() => {
+                      setState(!state);
+                    }}
+                  />
+                  <Label >Ligar</Label>
+                </FormGroup>
+              </Form>
+
+            </div>
+          </div>
+        </div>
         <div onClick={logout} className="logout">
           <button className="btn-logout">
             <FaSignOutAlt /> Sair
           </button>
         </div>
 
-        <div className="darkmode">
-          <div className={hide ? "theme_logout" : "theme_logout_show"}>
-            <h3 className="title-dark-mode">Tema escuro</h3>
-          </div>
-        </div>
-
-        <div className="tema">
-          <div>
-            <Form>
-              <FormGroup switch>
-                <Input
-                  className="tema-dark-switch"
-                  type="switch"
-                  checked={state}
-                  onClick={() => {
-                    setState(!state);
-                  }}
-                />
-                <Label >Ligar</Label>
-              </FormGroup>
-            </Form>
-
-          </div>
-        </div>
       </div>
     </>
   );

@@ -24,8 +24,8 @@
 
                         flex-direction: row;
                         align-items: center;
-                        justify-content: space-around;
-                        padding: 25px 30px;
+
+
                         border-bottom: 5px solid var(--border-color);
 
                         .image-name {
@@ -152,10 +152,42 @@
 
 .logout .btn-logout {
     margin: 0px;
+    height: 64px;
+
 }
 
 .btn-logout {
     margin-top: 0px;
     padding: 0px;
     height: 50px;
+}
+
+.tema {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.body {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+
+}
+
+
+
+.father-dark {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.logout {
+    width: 100%;
 }
