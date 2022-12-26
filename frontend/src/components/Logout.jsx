@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { io } from "socket.io-client";
 import { useIdleTimer } from 'react-idle-timer'
 import { useAlert } from 'react-alert'
-
+import { Dispatch } from "react";
 
 
 const Logout = () => {
@@ -16,8 +16,19 @@ const Logout = () => {
   const alert = useAlert()
 
   const onIdle = () => {
+
+    alert.error('Você foi desconectado por inatividade', { timeout: 120 * 10000 })
     disconnectIdleUser()
   }
+
+
+
+  const onPrompt = () => {
+
+    alert.show('Você será desconectado em breve caso permaneça inativo', { timeout: 60 * 1000 })
+
+  }
+
 
   const {
     start,
@@ -29,16 +40,22 @@ const Logout = () => {
     isPrompted,
     isLeader,
     getTabId,
-    getRemainingTime,
     getElapsedTime,
+    getRemainingTime,
     getLastIdleTime,
     getLastActiveTime,
     getTotalIdleTime,
     getTotalActiveTime
   } = useIdleTimer({
     onIdle,
+<<<<<<< HEAD
     timeout:60 * 1000,
     promptTimeout: 0,
+=======
+    onPrompt,
+    timeout: 5000,
+    promptTimeout: 5000,
+>>>>>>> 951c622925e06d63bdd68723caf2face32af4746
     events: [
       'mousemove',
       'keydown',

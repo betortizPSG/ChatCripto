@@ -81,7 +81,6 @@ export const authReducer = (state = authState, action) => {
       ...state,
       authenticate: false,
       myInfo: "",
-      timeout: 300,
       successMessage: "Saida feita com sucesso",
     };
   }
@@ -91,10 +90,10 @@ export const authReducer = (state = authState, action) => {
       ...state,
       authenticate: false,
       myInfo: "",
-      successMessage: "Você foi deslogado do sistema por inatividade"
     }
 
 
   }
+
   return state;
 };
