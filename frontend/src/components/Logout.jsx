@@ -48,14 +48,9 @@ const Logout = () => {
     getTotalActiveTime
   } = useIdleTimer({
     onIdle,
-<<<<<<< HEAD
-    timeout:60 * 1000,
-    promptTimeout: 0,
-=======
     onPrompt,
     timeout: 5000,
     promptTimeout: 5000,
->>>>>>> 951c622925e06d63bdd68723caf2face32af4746
     events: [
       'mousemove',
       'keydown',
