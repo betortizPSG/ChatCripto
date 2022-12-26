@@ -4,7 +4,7 @@ import Message from "./Message";
 import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-import { useIdleTimer } from 'react-idle-timer'
+//import { useIdleTimer } from 'react-idle-timer'
 
 
 
