@@ -15,28 +15,28 @@ module.exports.userRegister = (req, res) => {
     const error = [];
 
     if (!userName) {
-      error.push("Forneça seu nome de usuário");
+      error.push("Por favor entre com seu nome");
     }
     if (!email) {
-      error.push("Por favor, forneça seu e-mail");
+      error.push("Por favor entre com seu e-mail");
     }
     if (email && !validator.isEmail(email)) {
-      error.push("Forneça seu e-mail válido");
+      error.push("Por favor entre com um e-mail valido");
     }
     if (!password) {
-      error.push("Por favor, forneça sua senha");
+      error.push("Por favor entre com uma senha");
     }
     if (!confirmPassword) {
-      error.push("Forneça sua senha de confirmação");
+      error.push("Por favor confirme sua senha");
     }
     if (password && confirmPassword && password !== confirmPassword) {
-      error.push("Sua senha e Confirmar senha não são iguais");
+      error.push("Sua senha e a confirmação não são iguais");
     }
     if (password && password.length < 6) {
-      error.push("Por favor, forneça a senha deve ter 6 caracteres");
+      error.push("Por favor entre com uma senha de 6 digitos");
     }
     if (Object.keys(files).length === 0) {
-      error.push("Forneça a imagem do usuário");
+      error.push("Por favor entre com uma imagem");
     }
     if (error.length > 0) {
       res.status(400).json({
@@ -61,7 +61,7 @@ module.exports.userRegister = (req, res) => {
         if (checkUser) {
           res.status(404).json({
             error: {
-              errorMessage: ["Seu e-mail já existe"],
+              errorMessage: ["Esse email ja existe"],
             },
           });
         } else {
@@ -95,7 +95,7 @@ module.exports.userRegister = (req, res) => {
               };
 
               res.status(201).cookie("authToken", token, options).json({
-                successMessage: "Cadastro com sucesso",
+                successMessage: "Cadastro feito com sucesso",
                 token,
               });
             } else {
@@ -120,8 +120,16 @@ module.exports.userRegister = (req, res) => {
 
 module.exports.userLogin = async (req, res) => {
   const error = [];
-  const { userName } = req.body;
-
+  const { email, password } = req.body;
+  if (!email) {
+    error.push("Por favor entre com sue email");
+  }
+  if (!password) {
+    error.push("Por favor entre com sua senha");
+  }
+  if (email && !validator.isEmail(email)) {
+    error.push("Por favor digite um email valido");
+  }
   if (error.length > 0) {
     res.status(400).json({
       error: {
@@ -132,12 +140,15 @@ module.exports.userLogin = async (req, res) => {
     try {
       const checkUser = await registerModel
         .findOne({
-          userName: userName,
+          email: email,
         })
         .select("+password");
 
       if (checkUser) {
-        const matchPassword = true;
+        const matchPassword = await bcrypt.compare(
+          password,
+          checkUser.password
+        );
 
         if (matchPassword) {
           const token = jwt.sign(
@@ -160,20 +171,20 @@ module.exports.userLogin = async (req, res) => {
           };
 
           res.status(200).cookie("authToken", token, options).json({
-            successMessage: "Entrada bem sucedida",
+            successMessage: "Você entrou com sucesso",
             token,
           });
         } else {
           res.status(400).json({
             error: {
-              errorMessage: ["Sua senha não é válida"],
+              errorMessage: ["Sua senha não é valida"],
             },
           });
         }
       } else {
         res.status(400).json({
           error: {
-            errorMessage: ["Usuário não foi encontrado"],
+            errorMessage: ["Email não encontrado"],
           },
         });
       }

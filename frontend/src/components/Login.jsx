@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../store/actions/authAction";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
-    userName: "",
+    email: "",
+    password: "",
   });
 
   const inputHendle = (e) => {
@@ -50,28 +51,45 @@ const Login = () => {
     <div className="register">
       <div className="card">
         <div className="card-header">
+          <h3>Cripto chat</h3>
         </div>
 
         <div className="card-body">
           <form onSubmit={login}>
             <div className="form-group">
-              <label htmlFor="username">Seu Nome</label>
+              <label htmlFor="email">Email</label>
               <input
-                type="text"
+                type="email"
                 onChange={inputHendle}
-                name="userName"
-                value={state.userName}
+                name="email"
+                value={state.email}
                 className="form-control"
-                placeholder="Seu Nome"
-                id="username"
+                placeholder="Seu email"
+                id="email"
               />
             </div>
 
             <div className="form-group">
-              <input type="submit" value="entrar" className="btn" />
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                onChange={inputHendle}
+                name="password"
+                value={state.password}
+                className="form-control"
+                placeholder="Sua senha"
+                id="password"
+              />
             </div>
 
             <div className="form-group">
+              <input type="submit" value="Entrar" className="btn" />
+            </div>
+
+            <div className="form-group">
+              <span>
+                <Link to="/messenger/register"> Faça seu cadastro </Link>
+              </span>
             </div>
           </form>
         </div>
