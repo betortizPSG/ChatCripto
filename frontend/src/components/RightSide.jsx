@@ -34,6 +34,22 @@ const RightSide = (props) => {
                                         <Logout />
                                    </div>
                                    <div className="header">
+                                        <div className="image-name">
+                                             <div className="image">
+                                                  <img src={`./image/${currentfriend.image}`} alt="" />
+
+                                                  {activeUser &&
+                                                       activeUser.length > 0 &&
+                                                       activeUser.some((u) => u.userId === currentfriend._id) ? (
+                                                       <div className="active-icon"></div>
+                                                  ) : (
+                                                       ""
+                                                  )}
+                                             </div>
+                                             <div className="name">
+                                                  <h3>{currentfriend.userName} </h3>
+                                             </div>
+                                        </div>
                                         <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >
                                              <div className="">
                                                   <h3 className="title-dark-mode">Criptografar</h3>
@@ -57,28 +73,10 @@ const RightSide = (props) => {
                                                   </FormGroup>
                                              </Form>
                                         </div>
+
                                         <div className="col-4">
-
-
-
-
                                         </div>
-                                        <div className="image-name">
-                                             <div className="image">
-                                                  <img src={`./image/${currentfriend.image}`} alt="" />
 
-                                                  {activeUser &&
-                                                       activeUser.length > 0 &&
-                                                       activeUser.some((u) => u.userId === currentfriend._id) ? (
-                                                       <div className="active-icon"></div>
-                                                  ) : (
-                                                       ""
-                                                  )}
-                                             </div>
-                                             <div className="name">
-                                                  <h3>{currentfriend.userName} </h3>
-                                             </div>
-                                        </div>
                                    </div>
                                    {show ? (
                                         <Message
