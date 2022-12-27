@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+<<<<<<< HEAD
 //import { useIdleTimer } from 'react-idle-timer'
+=======
+>>>>>>> f3476f449e8e04b6dab84b7224b88549f3cbf06e
 
 
 

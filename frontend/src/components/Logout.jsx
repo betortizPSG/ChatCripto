@@ -6,9 +6,9 @@ import { themeSet } from "../store/actions/messengerAction";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { io } from "socket.io-client";
-import { useIdleTimer } from 'react-idle-timer'
+import { useIdleTimer } from 'react-idle-timer';
 import { useAlert } from 'react-alert'
-import { Dispatch } from "react";
+
 
 
 const Logout = () => {
@@ -16,9 +16,9 @@ const Logout = () => {
   const alert = useAlert()
 
   const onIdle = () => {
-
-    alert.error('Você foi desconectado por inatividade', { timeout: 120 * 10000 })
     disconnectIdleUser()
+    alert.error('Você foi desconectado por inatividade', { timeout: 120 * 1000 })
+
   }
 
 
@@ -29,6 +29,10 @@ const Logout = () => {
 
   }
 
+  const onAction = () => {
+    reset()
+    resume()
+  }
 
   const {
     start,
@@ -49,8 +53,9 @@ const Logout = () => {
   } = useIdleTimer({
     onIdle,
     onPrompt,
-    timeout: 5000,
-    promptTimeout: 5000,
+    onAction,
+    timeout: 5 * 1000,
+    promptTimeout: 5 * 1000,
     events: [
       'mousemove',
       'keydown',
