@@ -17,7 +17,7 @@ const Logout = () => {
 
   const onIdle = () => {
     disconnectIdleUser()
-    alert.error('Você foi desconectado por inatividade')
+    alert.error('Você foi desconectado por inatividade', { timeout: 120 * 1000 })
 
   }
 
@@ -25,12 +25,13 @@ const Logout = () => {
 
   const onPrompt = () => {
 
-    alert.show('Você será desconectado em breve caso permaneça inativo')
+    alert.show('Você será desconectado em breve caso permaneça inativo', { timeout: 60 * 1000 })
 
   }
 
   const onAction = () => {
     reset()
+    resume()
   }
 
   const {
@@ -53,8 +54,8 @@ const Logout = () => {
     onIdle,
     onPrompt,
     onAction,
-    timeout: 10000,
-    promptTimeout: 5000,
+    timeout: 5 * 1000,
+    promptTimeout: 5 * 1000,
     events: [
       'mousemove',
       'keydown',
