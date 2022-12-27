@@ -167,3 +167,30 @@
     width: 100%;
     justify-content: center;
 }
+
+
+.body {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+
+}
+
+
+
+.father-dark {
+    width: 100%;
+
+}
+
+.logout {
+    width: 100%;
+}
+
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
