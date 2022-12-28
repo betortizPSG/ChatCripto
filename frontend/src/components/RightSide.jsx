@@ -18,7 +18,12 @@ const RightSide = (props) => {
      const onChangeShow = (valor) => {
 
           if (valor === false) {
-               setShow(true)
+               setTimeout(() => {
+                    setShow(true);
+
+                    scrollRef.current?.scrollIntoView({ behavior: "auto" });
+
+               }, "100")
           }
      }
 
