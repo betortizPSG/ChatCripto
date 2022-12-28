@@ -11,7 +11,15 @@ import { useAlert } from 'react-alert'
 
 
 
-const Logout = () => {
+const Logout = (props) => {
+
+  const alterarShow = () => {
+    if (props.changeShow) {
+      props.changeShow(props.show)
+    }
+  }
+
+
   const socket = useRef();
   const alert = useAlert()
 
@@ -24,7 +32,7 @@ const Logout = () => {
 
 
   const onPrompt = () => {
-
+    alterarShow()
     alert.show('Você será desconectado em breve caso permaneça inativo', { timeout: 60 * 1000 })
 
   }
