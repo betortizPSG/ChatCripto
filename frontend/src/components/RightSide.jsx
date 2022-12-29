@@ -4,6 +4,7 @@ import Message from "./Message";
 import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+import Header from "./Header";
 //import { useIdleTimer } from 'react-idle-timer'
 
 
@@ -15,17 +16,6 @@ const RightSide = (props) => {
 
      const [show, setShow] = useState(true);
 
-     const onChangeShow = (valor) => {
-
-          if (valor === false) {
-               setTimeout(() => {
-                    setShow(true);
-
-                    scrollRef.current?.scrollIntoView({ behavior: "auto" });
-
-               }, "100")
-          }
-     }
 
      const {
           currentfriend,
@@ -51,51 +41,9 @@ const RightSide = (props) => {
                                    <div>
                                         <Logout />
                                    </div>
-                                   <div className="header">
-                                        <div className="image-name">
-                                             <div className="image">
-                                                  <img src={`./image/${currentfriend.image}`} alt="" />
-
-                                                  {activeUser &&
-                                                       activeUser.length > 0 &&
-                                                       activeUser.some((u) => u.userId === currentfriend._id) ? (
-                                                       <div className="active-icon"></div>
-                                                  ) : (
-                                                       ""
-                                                  )}
-                                             </div>
-                                             <div className="name">
-                                                  <h3>{currentfriend.userName} </h3>
-                                             </div>
-                                        </div>
-                                        <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >
-                                             <div className="">
-                                                  <h3 className="title-dark-mode">Criptografar</h3>
-                                             </div >
-                                             <Form>
-                                                  <FormGroup switch>
-                                                       <Input
-                                                            className="tema-dark-switch"
-                                                            type="switch"
-                                                            checked={show}
-                                                            onClick={() => {
-                                                                 setTimeout(() => {
-                                                                      setShow(!show);
-
-                                                                      scrollRef.current?.scrollIntoView({ behavior: "auto" });
-
-                                                                 }, "100")
-                                                            }}
-                                                       />
-                                                       <Label check>Ligar</Label>
-                                                  </FormGroup>
-                                             </Form>
-                                        </div>
-
-                                        <div className="col-4">
-                                        </div>
-
-                                   </div>
+                                   <Header
+                                        currentfriend={currentfriend}
+                                   />
                                    {show ? (
                                         <Message
                                              message={message}

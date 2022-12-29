@@ -1,12 +1,11 @@
-.body{
+.body {
     text-align: center;
 }
 
-.darkmode{
-    margin-top: 50px;
-}
 
-.on ,.off{
+
+.on,
+.off {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -27,11 +26,12 @@
     transition: all 0.4s;
     margin-top: 50px;
 }
+
 .btn-logout:hover {
     background-color: #26796e;
 }
 
-.title-dark-mode{
+.title-dark-mode {
     color: var(--text-color);
 }
 
