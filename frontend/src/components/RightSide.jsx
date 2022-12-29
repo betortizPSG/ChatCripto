@@ -1,13 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Logout from "./Logout";
 import Message from "./Message";
 import MessageSend from "./MessageSend";
 import ListMessages from "./ListMessages";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+//import { useIdleTimer } from 'react-idle-timer'
+
+
+
 
 const RightSide = (props) => {
+
+
+
      const [show, setShow] = useState(true);
 
+     const onChangeShow = (valor) => {
+
+          if (valor === false) {
+               setTimeout(() => {
+                    setShow(true);
+
+                    scrollRef.current?.scrollIntoView({ behavior: "auto" });
+
+               }, "100")
+          }
+     }
 
      const {
           currentfriend,
@@ -110,7 +128,7 @@ const RightSide = (props) => {
                          </div>
                          {/* <div className="col-4">
                               <div>
-                                   <Logout />
+                                   <Logout show={show} changeShow={onChangeShow} />
                               </div>
 
                               <div id="box-criptografar" style={{ textAlign: 'center', marginTop: '10px' }} >

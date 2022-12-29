@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useState } from "react";
+//import { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaRegCheckCircle } from "react-icons/fa";
 
@@ -13,6 +13,7 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
           <>
 
                <div id="show-messages" className="message-show" >
+
                     {message && message.length > 0 ? (
                          message.map((m, index) =>
                               m.senderId === myInfo.id ?

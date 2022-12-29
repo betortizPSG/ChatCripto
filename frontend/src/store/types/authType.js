@@ -5,4 +5,6 @@ export const ERROR_CLEAR = 'ERROR_CLEAR'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const IDLE_USER = 'IDLE_USER'
+export const PROMPT_IDLE = 'PROMPT_IDLE'
 

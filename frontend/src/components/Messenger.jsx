@@ -12,7 +12,7 @@ import {
   getTheme,
   themeSet,
 } from "../store/actions/messengerAction";
-import { userLogout } from "../store/actions/authAction";
+//import { userLogout } from "../store/actions/authAction";
 import criptografar from "../criptografar";
 
 import toast, { Toaster } from "react-hot-toast";
@@ -256,11 +256,11 @@ const Messenger = () => {
   }, [message_get_success]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "auto" });
   }, [message]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "auto" });
   }, [Button]);
 
   const emojiSend = (emu) => {

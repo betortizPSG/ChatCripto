@@ -10,6 +10,9 @@ import {
   UPDATE,
   MESSAGE_GET_SUCCESS_CLEAR,
   SEEN_ALL,
+  LOGOUT_SUCCESS,
+  NEW_USER_ADD,
+  NEW_USER_ADD_CLEAR
 } from "../types/messengerType";
 
 const messengerState = {
@@ -121,7 +124,7 @@ export const messengerReducer = (state = messengerState, action) => {
     };
   }
 
-  if (type === "SEEN_ALL") {
+  if (type === SEEN_ALL) {
     const index = state.friends.findIndex(
       (f) => f.fndInfo._id === payload.reseverId
     );
@@ -131,7 +134,7 @@ export const messengerReducer = (state = messengerState, action) => {
     };
   }
 
-  if (type === "LOGOUT_SUCCESS") {
+  if (type === LOGOUT_SUCCESS) {
     return {
       ...state,
       friends: [],
@@ -141,14 +144,14 @@ export const messengerReducer = (state = messengerState, action) => {
     };
   }
 
-  if (type === "NEW_USER_ADD") {
+  if (type === NEW_USER_ADD) {
     return {
       ...state,
       new_user_add: payload.new_user_add,
     };
   }
 
-  if (type === "NEW_USER_ADD_CLEAR") {
+  if (type === NEW_USER_ADD_CLEAR) {
     return {
       ...state,
       new_user_add: "",
